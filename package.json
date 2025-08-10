@@ -12,6 +12,7 @@
     "template/package.json",
     "template/public/**/*",
     "template/src/main.tsx",
+    "template/src/react-docs-ui.d.ts",
     "template/src/vite-env.d.ts",
     "template/tsconfig.app.json",
     "template/tsconfig.json",

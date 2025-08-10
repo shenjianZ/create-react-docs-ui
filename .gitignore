@@ -1,3 +1,4 @@
 /template/node_modules
 /template/dist
 /template/package-lock.json
+/template/tsconfig.app.tsbuildinfo
