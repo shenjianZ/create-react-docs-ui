@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react-docs-ui": "^0.1.2",
+    "react-docs-ui": "^0.1.3",
     "buffer": "^6.0.3",
     "react": ">=18",
     "react-dom": ">=18",
