@@ -19,7 +19,20 @@
     "template/vite.config.ts",
     "README.md"
   ],
-  "description": "Scaffold a React Docs UI project powered by react-docs-ui",
+  "description": "Scaffold a React documentation site with one command — built-in routing, theming, MDX, examples, and production-ready build config, powered by react-docs-ui.",
+  "homepage": "https://github.com/shenjianZ/create-react-docs-ui",
+  "keywords": [
+    "react",
+    "cli",
+    "scaffolding",
+    "starter",
+    "template",
+    "docs",
+    "documentation",
+    "mdx",
+    "boilerplate",
+    "create-tool"
+  ],
   "license": "MIT"
 }
 

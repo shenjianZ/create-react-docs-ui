@@ -1,82 +1,85 @@
-# create-react-docs-ui
+English | [简体中文](README-zh.md)
 
-A simple scaffolding tool to quickly set up a modern documentation website powered by [react-docs-ui](https://github.com/btea/react-docs-ui).
+## create-react-docs-ui
 
-This tool creates a new project with a pre-configured, feature-rich documentation site, allowing you to focus solely on writing your Markdown content.
+Scaffold a React documentation site in seconds, powered by [`react-docs-ui`](https://github.com/shenjianZ/react-docs-ui). Focus on writing Markdown; routing, theming, MDX, syntax highlighting, i18n, sidebar/TOC and a command menu are prewired.
 
-## About the underlying library: react-docs-ui
+### Features
+- Configuration over code via `public/config/site.yaml`
+- MD/MDX rendering, syntax highlight, GFM, simple frontmatter parsing
+- Light/dark theme and command palette (Cmd/Ctrl+K)
+- Built-in i18n folders (e.g. `en`, `zh-cn`)
+- Ready-to-run Vite setup
 
-`react-docs-ui` is a React component library and toolset designed specifically for building documentation websites. Its core philosophy is **configuration over code**.
+### Requirements
+- Node.js >= 18
 
-### Core Features
-
-- **Configuration-Driven**: No need to write complex React components or routing logic. Define your entire site—navigation, sidebar, themes, and footer—through a simple `site.yaml` file.
-- **Fully-Featured Out-of-the-Box**:
-  - Responsive, modern design.
-  - Light/dark theme switching.
-  - Markdown rendering (GFM and Frontmatter supported).
-  - Built-in syntax highlighting.
-  - Quick command menu (`Cmd+K`).
-  - Internationalization (i18n) support.
-- **Extremely Simple to Start**: Launch a complete documentation site in under a minute.
-- **Highly Customizable**: Easily customize the logo, color scheme, navigation links, social media icons, and more.
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js**: Version `>= 18.0.0`
-- **Package Manager**: `npm`, `yarn`, or `pnpm`
-
-### Creating a New Project
-
-Run one of the following commands to create your new documentation site. Replace `my-docs` with your desired project name.
-
-#### npm
+### Quick start
+- npm:
 ```bash
 npm create react-docs-ui@latest my-docs
 ```
-
-#### yarn
+- yarn:
 ```bash
 yarn create react-docs-ui my-docs
 ```
-
-#### pnpm
+- pnpm:
 ```bash
 pnpm create react-docs-ui my-docs
 ```
-
-### Running Your Site
-
-After the project is created, navigate into the new directory, install dependencies, and start the development server.
-
+Then:
 ```bash
 cd my-docs
 npm install
 npm run dev
 ```
+Dev server runs at http://localhost:5173
 
-Your new documentation website will be running at `http://localhost:5173`.
+### Scripts (generated project)
+- `dev`: start Vite dev server
+- `build`: type-check and build
+- `preview`: preview production build
 
-## Project Structure
+### Project structure (generated)
+- `public/config/site.yaml` and `public/config/site.en.yaml`: site config per language
+- `public/docs/<lang>/**/*.md`: Markdown docs, matched by route slug
+- `src/`: app entry; usually no changes required
 
-The generated project has a straightforward structure:
+### Config example (`public/config/site.yaml`)
+```yaml
+site:
+  logo: /logo.svg
+  title: My Docs
+  description: Awesome docs
+navbar:
+  showTitle: true
+  items:
+    - title: GitHub
+      link: https://github.com/shenjianZ/react-docs-ui
+      external: true
+sidebar:
+  collections:
+    guide:
+      sections:
+        - title: Getting Started
+          path: guide
+          children:
+            - { title: Introduction, path: guide/introduction }
+```
 
-- **`public/config/site.yaml`**: The central configuration file for your entire site. This is where you'll define navigation, sidebars, and metadata.
-- **`public/docs/`**: The directory where all your Markdown documentation files reside. It's pre-configured with `en` and `zh-cn` subdirectories for internationalization.
-- **`src/`**: Contains the main application entry point. You typically won't need to modify files here.
+### Docs example (`public/docs/en/guide/introduction.md`)
+```markdown
+---
+title: Introduction
+---
 
-## Basic Configuration
+# Introduction
 
-To customize your site, you'll primarily edit `public/config/site.yaml`. Here you can:
+Welcome to My Docs!
+```
 
-- **Change the site title and logo**: Modify the `site` object.
-- **Add navigation links**: Add items to the `navbar.items` array.
-- **Structure your documentation**: Define the hierarchy of your content in the `sidebar.collections` object.
+### Links
+- Underlying UI library: `react-docs-ui` — https://github.com/shenjianZ/react-docs-ui
 
-For a complete guide on all available options, please refer to the documentation within your newly created project.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+### License
+[MIT](LICENSE)
