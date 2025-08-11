@@ -1,6 +1,6 @@
 {
   "name": "create-react-docs-ui",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "type": "module",
   "bin": {
@@ -17,7 +17,8 @@
     "template/tsconfig.app.json",
     "template/tsconfig.json",
     "template/vite.config.ts",
-    "README.md"
+    "README.md",
+    "README-zh.md"
   ],
   "description": "Scaffold a React documentation site with one command — built-in routing, theming, MDX, examples, and production-ready build config, powered by react-docs-ui.",
   "homepage": "https://github.com/shenjianZ/create-react-docs-ui",
