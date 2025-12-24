@@ -1,4 +1,5 @@
 /template/node_modules
 /template/dist
 /template/package-lock.json
+/template/pnpm-lock.yaml
 /template/tsconfig.app.tsbuildinfo
