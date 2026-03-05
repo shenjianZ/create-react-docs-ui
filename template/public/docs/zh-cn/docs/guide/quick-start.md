@@ -25,17 +25,15 @@ npm install
 - 打开 `public/docs/zh-cn/` 目录。
 - 你可以修改现有的 `index.md` 和 `guide` 目录下的文件，或者创建新的 `.md` 文件。
 
-例如，我们来创建一个新页面。在 `public/docs/zh-cn/` 下新建一个 `about.md` 文件：
+例如，我们来创建一个新页面。在`public/docs/zh-cn/`新建`about`目录以及`about.md`文件 ,
+`about.md`的内容如下
 
 ```markdown
----
-title: 关于我们
-description: 这是一个关于我们团队的页面。
----
 
 # 关于我们
 
 我们热爱开源和创造！
+
 ```
 
 
@@ -64,39 +62,29 @@ site:
 navbar:
   items:
     - title: "首页"
-      link: "/zh-cn/"
-    - title: "指南"
-      link: "/zh-cn/guide/introduction"
+        link: "/"
+        active: true
+    - title: "文档"
+        link: "/docs"
     - title: "关于"  # 新增
-      link: "/zh-cn/about" # 新增
+        link: "/about" # 新增
 ```
 
 ### c. 添加到侧边栏
 
-为了让“关于”页面在侧边栏也可见，我们在 `sidebar.collections.guide.sections` 中添加一个新条目。
+为了让“关于”页面在侧边栏也可见，我们在 新建一个 `sidebar.collections.about.sections` ，并且添加一个新条目。
 
 ```yaml
 sidebar:
   collections:
-    guide:
+    about:
       sections:
-        - title: "快速开始"
-          path: "/zh-cn/guide"
-          children:
-            - title: "介绍"
-              path: "/zh-cn/guide/introduction"
-            - title: "安装"
-              path: "/zh-cn/guide/installation"
-            - title: "快速上手"
-              path: "/zh-cn/guide/quick-start"
         # 你可以为 "关于" 页面创建一个新的 section
         - title: "关于我们"
-          path: "/zh-cn/about"
-          children:
-            - title: "关于"
-              path: "/zh-cn/about"
+          path: "/about/about"
 ```
 
+这里侧边栏的about项还需要再创建一个文件`public/docs/zh-cn/about` 下`创建about.md`
 ## 4. 启动网站
 
 保存你的所有修改，然后在终端运行：

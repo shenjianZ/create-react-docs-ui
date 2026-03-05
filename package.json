@@ -1,42 +1,44 @@
 {
-  "name": "create-react-docs-ui",
-  "version": "0.3.0",
-  "private": false,
-  "type": "module",
-  "bin": {
-    "create-react-docs-ui": "./index.js"
-  },
-  "files": [
-    "index.js",
-    "template/index.html",
-    "template/package.json",
-    "template/public/**/*",
-    "template/src/main.tsx",
-    "template/src/react-docs-ui.d.ts",
-    "template/src/vite-env.d.ts",
-    "template/tsconfig.app.json",
-    "template/tsconfig.json",
-    "template/vite.config.ts",
-    "README.md",
-    "README-zh.md"
-  ],
-  "description": "Scaffold a React documentation site with one command — built-in routing, theming, MDX, examples, and production-ready build config, powered by react-docs-ui.",
-  "homepage": "https://github.com/shenjianZ/create-react-docs-ui",
-  "keywords": [
-    "react",
-    "cli",
-    "scaffolding",
-    "starter",
-    "template",
-    "docs",
-    "documentation",
-    "mdx",
-    "boilerplate",
-    "create-tool"
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+    "name": "create-react-docs-ui",
+    "version": "0.3.0",
+    "private": false,
+    "type": "module",
+    "bin": {
+        "create-react-docs-ui": "./index.js"
+    },
+    "files": [
+        "index.js",
+        "template/index.html",
+        "template/package.json",
+        "template/vite-plugin-mdx-components.ts",
+        "template/public/**/*",
+        "template/src/main.tsx",
+        "template/src/react-docs-ui.d.ts",
+        "template/src/vite-env.d.ts",
+        "template/src/components/**/*",
+        "template/tsconfig.app.json",
+        "template/tsconfig.json",
+        "template/vite.config.ts",
+        "README.md",
+        "README-zh.md"
+    ],
+    "description": "Scaffold a React documentation site with one command — built-in routing, theming, MDX, examples, and production-ready build config, powered by react-docs-ui.",
+    "homepage": "https://github.com/shenjianZ/create-react-docs-ui",
+    "keywords": [
+        "react",
+        "cli",
+        "scaffolding",
+        "starter",
+        "template",
+        "docs",
+        "documentation",
+        "mdx",
+        "boilerplate",
+        "create-tool"
+    ],
+    "license": "MIT",
+    "engines": {
+        "node": ">=18"
+    },
+    "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
 }

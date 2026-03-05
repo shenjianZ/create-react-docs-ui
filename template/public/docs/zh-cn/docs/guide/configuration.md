@@ -11,6 +11,8 @@
 | `theme` | 主题配置（默认模式、是否允许切换） |
 | `toc` | 文章右侧目录（开关、层级、标题） |
 | `footer` | 页脚（链接、社交、仓库信息） |
+| `contextMenu` | 右键菜单配置 |
+| `mdx` | MDX 组件配置 |
 | `pwa` | PWA 设置（预留/可选） |
 
 ---
@@ -133,6 +135,50 @@ Social
 | `name` | string | 平台名称（如 `github`/`twitter`/`bilibili`） |
 | `url` | string | 个人页或链接 |
 | `icon` | string | 图标名 |
+
+---
+
+## `contextMenu`
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `enabled` | boolean | 全局开关，false 则完全禁用右键菜单 |
+| `page` | object | 页面组菜单项配置 |
+| `site` | object | 站点组菜单项配置 |
+| `appearance` | object | 外观组菜单项配置 |
+
+Page
+| 字段 | 类型 | 说明 | 默认值 |
+| :-- | :-- | :-- | :-- |
+| `copySelectedText` | boolean | 复制选中的文字 | `true` |
+| `copyUrl` | boolean | 复制当前链接 | `true` |
+| `copyTitle` | boolean | 复制页面标题 | `false` |
+| `copyMarkdownLink` | boolean | 复制 Markdown 链接 | `false` |
+| `openInNewTab` | boolean | 在新标签页打开 | `false` |
+| `reload` | boolean | 刷新 | `true` |
+| `printPage` | boolean | 打印页面 | `true` |
+| `scrollToTop` | boolean | 回到顶部 | `true` |
+| `scrollToBottom` | boolean | 滚动到底部 | `true` |
+
+Site
+| 字段 | 类型 | 说明 | 默认值 |
+| :-- | :-- | :-- | :-- |
+| `goHome` | boolean | 返回首页 | `true` |
+| `quickNav` | boolean | 快速跳转 | `false` |
+| `language` | boolean | 语言切换 | `false` |
+
+Appearance
+| 字段 | 类型 | 说明 | 默认值 |
+| :-- | :-- | :-- | :-- |
+| `theme` | boolean | 主题切换 | `false` |
+| `resetThemePref` | boolean | 重置主题偏好 | `false` |
+
+---
+
+## `mdx`
+| 字段 | 类型 | 说明 | 示例 |
+| :-- | :-- | :-- | :-- |
+| `componentsPath` | string | 组件扫描路径 | `"/src/components"` |
+| `enabled` | boolean | 启用 MDX 支持 | `true` |
 
 ---
 

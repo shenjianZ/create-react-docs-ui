@@ -39,7 +39,7 @@
     ```
 
 2.  **创建配置文件**:
-    在你的 `public` 目录下创建一个 `config` 文件夹，并在其中新建一个 `site.yaml` 文件。你可以从[这里](https://github.com/shenjianZ/react-docs-ui/blob/main/react-docs-ui/public/config/site.yaml)复制一个基础模板。
+    在你的 `public` 目录下创建一个 `config` 文件夹，并在其中新建一个 `site.yaml` 文件。你可以从[这里](https://github.com/shenjianZ/create-vue-docs-ui/blob/master/template/public/config/site.yaml)复制一个基础模板。
 
 3.  **创建文档目录**:
     在 `public` 目录下创建一个 `docs` 文件夹，用于存放你的 Markdown 文件。例如: `public/docs/zh-cn/index.md`。

@@ -21,8 +21,8 @@ navbar:
         - title: "首页"
           link: "/"
           active: true
-        - title: "指南"
-          link: "/guide"
+        - title: "文档"
+          link: "/docs"
     actions:
         - type: "github"
           link: "https://github.com/shenjianZ/React-docs-ui"
@@ -32,19 +32,28 @@ navbar:
 sidebar:
     enabled: true
     collections:
-        guide:
+        docs:
             sections:
                 - title: "快速开始"
-                  path: "/guide"
+                  path: "/docs/guide"
                   children:
                       - title: "介绍"
-                        path: "/guide/introduction"
+                        path: "/docs/guide/introduction"
                       - title: "安装"
-                        path: "/guide/installation"
+                        path: "/docs/guide/installation"
                       - title: "快速上手"
-                        path: "/guide/quick-start"
+                        path: "/docs/guide/quick-start"
                       - title: "配置说明"
-                        path: "/guide/configuration"
+                        path: "/docs/guide/configuration"
+                - title: "文档测试"
+                  path: "/docs/test"
+                  children:
+                      - title: "MD测试"
+                        path: "/docs/test/test"
+                      - title: "katex测试"
+                        path: "/docs/test/katex-test"
+                      - title: "MDX 演示"
+                        path: "/docs/test/mdx-test"
 
 # Theme Configuration
 theme:
@@ -71,12 +80,12 @@ toc:
 # Footer Configuration
 footer:
     enabled: true
-    copyright: "© 2025 React Docs UI. All rights reserved."
+    copyright: "© 2026 React Docs UI. All rights reserved."
     repository:
         url: "https://github.com/shenjianZ/React-docs-ui"
         branch: "master"
-    lastUpdated: "2025-08-14"
-    version: "v0.1.7"
+    lastUpdated: "2026-03-05"
+    version: "v0.4.0"
     groups:
         - title: "社区"
           items:
@@ -94,8 +103,8 @@ footer:
                 external: true
         - title: "帮助支持"
           items:
-              - title: "示例"
-                link: "/guide/quick-start"
+              - title: "快速开始"
+                link: "/docs/guide"
               - title: "源代码"
                 link: "https://github.com/shenjianZ/React-docs-ui"
                 external: true
@@ -170,6 +179,7 @@ contextMenu:
 
     # 页面组菜单项配置
     page:
+        copySelectedText: true # 复制选中的文字
         copyUrl: true # 复制当前链接
         copyTitle: false # 复制页面标题
         copyMarkdownLink: false # 复制 Markdown 链接
@@ -189,3 +199,8 @@ contextMenu:
     appearance:
         theme: false # 主题切换
         resetThemePref: false # 重置主题偏好
+
+# MDX 组件配置
+mdx:
+    componentsPath: "/src/components" # 组件扫描路径
+    enabled: true # 启用 MDX 支持

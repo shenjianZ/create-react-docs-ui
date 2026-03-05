@@ -39,7 +39,7 @@ If you want to manually integrate `react-docs-ui` into an existing Vite + React 
     ```
 
 2.  **Create configuration files**:
-    In your `public` directory, create a `config` folder, and inside it, create a `site.yaml` file. You can copy a basic template from [here](https://github.com/shenjianZ/react-docs-ui/blob/main/react-docs-ui/public/config/site.yaml).
+    In your `public` directory, create a `config` folder, and inside it, create a `site.yaml` file. You can copy a basic template from [here](https://github.com/shenjianZ/create-vue-docs-ui/blob/master/template/public/config/site.en.yaml).
 
 3.  **Create the documentation directory**:
     In your `public` directory, create a `docs` folder to store your Markdown files. For example: `public/docs/en/index.md`.

@@ -11,6 +11,8 @@ The project is configuration-driven. Most behavior is defined in `public/config/
 | `theme` | Theme options (default mode, toggle) |
 | `toc` | Article table of contents (enabled, levels, title) |
 | `footer` | Footer links, socials, repository meta |
+| `contextMenu` | Context menu configuration |
+| `mdx` | MDX component configuration |
 | `pwa` | Progressive Web App settings (reserved/optional) |
 
 ---
@@ -133,6 +135,50 @@ Social
 | `name` | string | Provider key (e.g. `github`, `twitter`, `bilibili`) |
 | `url` | string | Profile or link URL |
 | `icon` | string | Icon name |
+
+---
+
+## `contextMenu`
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| `enabled` | boolean | Global switch, set to false to completely disable context menu |
+| `page` | object | Page group menu items configuration |
+| `site` | object | Site group menu items configuration |
+| `appearance` | object | Appearance group menu items configuration |
+
+Page
+| Field | Type | Description | Default |
+| :-- | :-- | :-- | :-- |
+| `copySelectedText` | boolean | Copy selected text | `true` |
+| `copyUrl` | boolean | Copy current URL | `true` |
+| `copyTitle` | boolean | Copy page title | `false` |
+| `copyMarkdownLink` | boolean | Copy Markdown link | `false` |
+| `openInNewTab` | boolean | Open in new tab | `false` |
+| `reload` | boolean | Refresh | `true` |
+| `printPage` | boolean | Print page | `true` |
+| `scrollToTop` | boolean | Scroll to top | `true` |
+| `scrollToBottom` | boolean | Scroll to bottom | `true` |
+
+Site
+| Field | Type | Description | Default |
+| :-- | :-- | :-- | :-- |
+| `goHome` | boolean | Go to home | `true` |
+| `quickNav` | boolean | Quick navigation | `false` |
+| `language` | boolean | Language switch | `false` |
+
+Appearance
+| Field | Type | Description | Default |
+| :-- | :-- | :-- | :-- |
+| `theme` | boolean | Theme switch | `false` |
+| `resetThemePref` | boolean | Reset theme preference | `false` |
+
+---
+
+## `mdx`
+| Field | Type | Description | Example |
+| :-- | :-- | :-- | :-- |
+| `componentsPath` | string | Component scan path | `"/src/components"` |
+| `enabled` | boolean | Enable MDX support | `true` |
 
 ---
 
