@@ -10,16 +10,74 @@ interface BadgeListProps {
 }
 
 function Badge({ variant = 'default', children }: BadgeProps) {
-  const styles = {
-    default: 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
-    success: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-    error: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-    info: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+  const [isDarkMode, setIsDarkMode] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsDarkMode(document.documentElement.classList.contains('dark'))
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'))
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+    return () => observer.disconnect()
+  }, [])
+
+  const styles: Record<string, React.CSSProperties> = {
+    default: {
+      backgroundColor: '#f3f4f6',
+      color: '#1f2937'
+    },
+    success: {
+      backgroundColor: '#dcfce7',
+      color: '#166534'
+    },
+    warning: {
+      backgroundColor: '#fef9c3',
+      color: '#854d0e'
+    },
+    error: {
+      backgroundColor: '#fee2e2',
+      color: '#991b1b'
+    },
+    info: {
+      backgroundColor: '#dbeafe',
+      color: '#1e40af'
+    }
+  }
+
+  const darkStyles: Record<string, React.CSSProperties> = {
+    default: {
+      backgroundColor: 'rgba(55, 65, 81, 0.2)',
+      color: '#e5e7eb'
+    },
+    success: {
+      backgroundColor: 'rgba(22, 101, 52, 0.2)',
+      color: '#bbf7d0'
+    },
+    warning: {
+      backgroundColor: 'rgba(133, 77, 14, 0.2)',
+      color: '#fef9c3'
+    },
+    error: {
+      backgroundColor: 'rgba(153, 27, 27, 0.2)',
+      color: '#fecaca'
+    },
+    info: {
+      backgroundColor: 'rgba(30, 58, 138, 0.2)',
+      color: '#bfdbfe'
+    }
   }
 
   return (
-    <span className={`inline-block rounded-full px-3 py-1 text-sm ${styles[variant]}`}>
+    <span style={{
+      display: 'inline-block',
+      borderRadius: '9999px',
+      padding: '0.25rem 0.75rem',
+      fontSize: '0.875rem',
+      ...(isDarkMode ? darkStyles[variant] : styles[variant])
+    }}>
       {children}
     </span>
   )
@@ -27,8 +85,13 @@ function Badge({ variant = 'default', children }: BadgeProps) {
 
 export function BadgeList({ children }: BadgeListProps) {
   return (
-    <div className="my-4 flex flex-wrap gap-2">
-      {React.Children.map(children, child => 
+    <div style={{
+      margin: '1rem 0',
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '0.5rem'
+    }}>
+      {React.Children.map(children, child =>
         React.isValidElement(child) ? child : null
       )}
     </div>

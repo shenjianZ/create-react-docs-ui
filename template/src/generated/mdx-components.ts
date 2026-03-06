@@ -6,7 +6,6 @@ import { BadgeList } from '../components/BadgeList'
 import { Callout } from '../components/Callout'
 import { Feature } from '../components/Feature'
 import { MyTip } from '../components/MyTip'
-import { StepList } from '../components/StepList'
 
 export const MDX_COMPONENTS = {
   Alert,
@@ -15,8 +14,6 @@ export const MDX_COMPONENTS = {
   Callout,
   Feature,
   MyTip,
-  StepList,
-  "StepList.Step": StepList.Step,
 }
 
 // 导出默认配置对象
@@ -26,7 +23,5 @@ export const mdxComponentsConfig = {
   "BadgeList.Badge": '../components/BadgeList',
   Callout: '../components/Callout',
   Feature: '../components/Feature',
-  MyTip: '../components/MyTip',
-  StepList: '../components/StepList',
-  "StepList.Step": '../components/StepList'
+  MyTip: '../components/MyTip'
 }
