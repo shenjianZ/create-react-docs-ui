@@ -13,6 +13,7 @@
         "template/vite-plugin-mdx-components.ts",
         "template/public/**/*",
         "template/src/main.tsx",
+        "template/src/index.css",
         "template/src/react-docs-ui.d.ts",
         "template/src/vite-env.d.ts",
         "template/src/components/**/*",
