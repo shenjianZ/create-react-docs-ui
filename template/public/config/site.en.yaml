@@ -205,3 +205,6 @@ contextMenu:
 mdx:
     componentsPath: "/src/components" # Component scan path
     enabled: true # Enable MDX support
+
+ai:
+    enabled: true
