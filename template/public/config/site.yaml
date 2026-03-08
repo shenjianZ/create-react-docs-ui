@@ -207,3 +207,8 @@ mdx:
 
 ai:
     enabled: true
+
+# 字体配置
+fonts:
+    fontFamilyZhCn: "PingFang SC, Microsoft YaHei, Noto Sans SC, sans-serif"
+    fontFamilyEn: "Fragment Mono, system-ui, sans-serif"
