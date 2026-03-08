@@ -48,6 +48,15 @@ function toValidPackageName(projectName) {
     .replace(/[^a-z\d\-~]+/g, '-')
 }
 
+function getPackageManager() {
+  const userAgent = process.env.npm_config_user_agent || ''
+  
+  if (userAgent.includes('pnpm')) return 'pnpm'
+  if (userAgent.includes('yarn')) return 'yarn'
+  if (userAgent.includes('bun')) return 'bun'
+  return 'npm'
+}
+
 function findLocalReactLib() {
   // Try to locate the built library in the monorepo for convenience
   const repoRoot = path.resolve(__dirname, '..')
@@ -115,11 +124,14 @@ async function init() {
 
   write('package.json', JSON.stringify(pkg, null, 2) + '\n')
 
+  const pm = getPackageManager()
+  const runCmd = pm === 'npm' ? 'npm run' : pm
+  
   console.log(`\n✅ Done! Created ${projectName} at ${root}`)
   console.log('\n📚 Get started with:')
   console.log(`\n  cd ${targetDir}`)
-  console.log('  npm install')
-  console.log('  npm run dev')
+  console.log(`  ${pm} install`)
+  console.log(`  ${runCmd} dev`)
   console.log('\n🎉 Your React Docs UI project is ready!')
 }
 
