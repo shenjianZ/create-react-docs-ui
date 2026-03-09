@@ -115,8 +115,11 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": "src",
-      buffer: "buffer/",
+      buffer: "buffer",
     },
+  },
+  define: {
+    global: 'globalThis',
   },
   server: {
     host: "0.0.0.0",
