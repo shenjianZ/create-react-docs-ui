@@ -45,6 +45,8 @@ sidebar:
                         path: "/docs/guide/quick-start"
                       - title: "配置说明"
                         path: "/docs/guide/configuration"
+                      - title: "PDF Server 部署"
+                        path: "/docs/guide/pdf-server"
                 - title: "文档测试"
                   path: "/docs/test"
                   children:
@@ -221,3 +223,15 @@ search:
     placeholder: "搜索文档..."
     maxResults: 20
     snippetLength: 120
+
+export:
+    enabled: true
+    markdown: true
+    pdf: true
+    word: true
+    allDocs: true
+    # PDF 服务器配置 (可选)
+    # 启用后将使用服务器端生成 PDF，否则使用浏览器原生打印
+    pdfServer:
+        enabled: false
+        url: "http://localhost:3001"
