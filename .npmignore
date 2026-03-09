@@ -1,0 +1,15 @@
+# Build artifacts
+template/dist/
+
+# Dependencies
+template/node_modules/
+
+# Lock files
+template/pnpm-lock.yaml
+
+# Build cache
+template/*.tsbuildinfo
+
+# Generated files (created at dev/build time)
+template/public/search-index-*.json
+template/src/generated/

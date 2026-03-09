@@ -3,3 +3,5 @@
 /template/package-lock.json
 /template/pnpm-lock.yaml
 /template/tsconfig.app.tsbuildinfo
+/template/public/search-index-*.json
+/template/src/generated/
