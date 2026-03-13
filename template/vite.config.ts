@@ -1,9 +1,153 @@
 // @ts-nocheck
 import path from "path"
+import fs from "node:fs/promises"
 import { spawn } from "child_process"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
+import yaml from "js-yaml"
 import { mdxComponentsPlugin } from "./vite-plugin-mdx-components"
+
+const FONT_BASE_URL = "https://file.shenjianl.cn/fonts/"
+
+function fontDownloadPlugin() {
+  let checkedInServe = false
+
+  const log = (message) => {
+    console.log(`[font-download] ${message}`)
+  }
+
+  const formatBytes = (bytes) => {
+    if (!Number.isFinite(bytes) || bytes <= 0) return "0 B"
+
+    const units = ["B", "KB", "MB", "GB"]
+    let value = bytes
+    let unitIndex = 0
+
+    while (value >= 1024 && unitIndex < units.length - 1) {
+      value /= 1024
+      unitIndex += 1
+    }
+
+    return `${value.toFixed(value >= 100 || unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`
+  }
+
+  const downloadFont = async (task) => {
+    const response = await fetch(task.source)
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`)
+    }
+
+    if (!response.body) {
+      throw new Error("response body is empty")
+    }
+
+    const totalBytes = Number(response.headers.get("content-length") || 0)
+    const reader = response.body.getReader()
+    const chunks = []
+    const startedAt = Date.now()
+    let downloadedBytes = 0
+    let lastLogAt = 0
+
+    log(`start: ${task.filename} <- ${task.source}`)
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+
+      const chunk = Buffer.from(value)
+      chunks.push(chunk)
+      downloadedBytes += chunk.byteLength
+
+      const now = Date.now()
+      if (lastLogAt === 0 || now - lastLogAt >= 500 || (totalBytes > 0 && downloadedBytes >= totalBytes)) {
+        const elapsedSeconds = Math.max((now - startedAt) / 1000, 0.001)
+        const speed = downloadedBytes / elapsedSeconds
+        const progress = totalBytes > 0 ? `${((downloadedBytes / totalBytes) * 100).toFixed(1)}%` : "unknown"
+        const totalText = totalBytes > 0 ? formatBytes(totalBytes) : "unknown"
+
+        log(
+          `progress: ${task.filename} ${formatBytes(downloadedBytes)}/${totalText} (${progress}) @ ${formatBytes(speed)}/s`
+        )
+        lastLogAt = now
+      }
+    }
+
+    return Buffer.concat(chunks)
+  }
+
+  const ensureFonts = async () => {
+    const root = path.resolve(__dirname)
+    const configDir = path.resolve(root, "public", "config")
+    const fontsDir = path.resolve(root, "public", "fonts")
+
+    await fs.mkdir(fontsDir, { recursive: true })
+
+    const tasks = new Map()
+    for (const fileName of ["site.yaml", "site.en.yaml"]) {
+      const filePath = path.resolve(configDir, fileName)
+      try {
+        const content = await fs.readFile(filePath, "utf8")
+        const parsed = yaml.load(content) || {}
+        const entries = parsed?.fonts?.downloadFonts || []
+
+        for (const entry of entries) {
+          const normalized = String(entry || "").trim()
+          if (!normalized) continue
+
+          const url = /^https?:\/\//i.test(normalized)
+            ? new URL(normalized)
+            : new URL(normalized.replace(/^\/+/, ""), FONT_BASE_URL)
+
+          const filename = path.posix.basename(url.pathname)
+          if (filename) {
+            tasks.set(filename, { filename, source: url.toString() })
+          }
+        }
+      } catch (error) {
+        if (error?.code !== "ENOENT") {
+          log(`failed to read ${fileName}: ${error.message}`)
+        }
+      }
+    }
+
+    if (tasks.size === 0) {
+      log("no fonts.downloadFonts entries found in public/config/site*.yaml")
+      return
+    }
+
+    for (const task of tasks.values()) {
+      const targetPath = path.resolve(fontsDir, task.filename)
+
+      try {
+        await fs.access(targetPath)
+        log(`exists: public/fonts/${task.filename}`)
+        continue
+      } catch {
+        // Continue to download.
+      }
+
+      try {
+        const fileBuffer = await downloadFont(task)
+        await fs.writeFile(targetPath, fileBuffer)
+        log(`downloaded: ${task.source} -> public/fonts/${task.filename}`)
+      } catch (error) {
+        log(`failed: ${task.source} -> public/fonts/${task.filename} (${error.message})`)
+      }
+    }
+  }
+
+  return {
+    name: "font-download-plugin",
+    async configureServer() {
+      if (checkedInServe) return
+      checkedInServe = true
+      await ensureFonts()
+    },
+    async buildStart() {
+      await ensureFonts()
+    },
+  }
+}
 
 function searchIndexPlugin() {
   return {
@@ -109,6 +253,7 @@ export default defineConfig({
       componentsPath: './src/components',
       outputPath: './src/generated/mdx-components.ts'
     }),
+    fontDownloadPlugin(),
     searchIndexPlugin(),
     publicHmrPlugin()
   ],
