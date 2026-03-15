@@ -10,11 +10,14 @@ template/pnpm-lock.yaml
 # Build cache
 template/*.tsbuildinfo
 
-# Generated files (created at dev/build time)
-template/public/search-index-*.json
-template/src/generated/
+# Build-time generated files that are now intentionally published
+# template/public/search-index-*.json
+# template/src/generated/
 
-# Only keep the Fragment Mono fonts in the published template
+# Keep only the template fonts we intentionally publish
 template/public/fonts/*
 !template/public/fonts/FragmentMono-Italic.woff2
 !template/public/fonts/FragmentMono-Regular.woff2
+!template/public/fonts/MiSans-Bold.woff2
+!template/public/fonts/MiSans-Medium.woff2
+!template/public/fonts/MiSans-Regular.woff2

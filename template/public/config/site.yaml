@@ -85,7 +85,7 @@ theme:
 # Table of Contents Configuration
 toc:
     # Maximum heading level to display in TOC (1-6)
-    maxLevel: 3
+    maxLevel: 4
 
     # Enable table of contents
     enabled: true
