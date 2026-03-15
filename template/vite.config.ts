@@ -9,6 +9,53 @@ import { mdxComponentsPlugin } from "./vite-plugin-mdx-components";
 
 const FONT_BASE_URL = "https://file.shenjianl.cn/fonts/";
 
+function createManualChunks(id) {
+    const normalizedId = id.replace(/\\/g, "/");
+
+    if (
+        normalizedId.includes("/react-docs-ui/dist/GlobalContextMenu-") ||
+        normalizedId.includes("/components/search/") ||
+        normalizedId.includes("/lib/search") ||
+        normalizedId.includes("/flexsearch/") ||
+        normalizedId.includes("/cmdk/")
+    ) {
+        return "docs-search";
+    }
+
+    if (
+        normalizedId.includes("/components/ai/") ||
+        normalizedId.includes("/lib/ai")
+    ) {
+        return "docs-ai";
+    }
+
+    if (
+        normalizedId.includes("/components/MdxContent") ||
+        normalizedId.includes("/react-markdown/") ||
+        normalizedId.includes("/remark-") ||
+        normalizedId.includes("/rehype-") ||
+        normalizedId.includes("/unified/") ||
+        normalizedId.includes("/micromark/") ||
+        normalizedId.includes("/mdast-util-") ||
+        normalizedId.includes("/hast-util-") ||
+        normalizedId.includes("/katex") ||
+        normalizedId.includes("/katex-physics") ||
+        normalizedId.includes("/gray-matter/")
+    ) {
+        return "docs-renderer";
+    }
+
+    if (
+        normalizedId.includes("/react-router") ||
+        normalizedId.includes("/@radix-ui/") ||
+        normalizedId.includes("/lucide-react/")
+    ) {
+        return "docs-ui";
+    }
+
+    return undefined;
+}
+
 function fontDownloadPlugin() {
     let checkedInServe = false;
 
@@ -298,8 +345,21 @@ export default defineConfig({
     server: {
         host: "0.0.0.0",
         port: 5173,
+        fs: {
+            allow: [
+                path.resolve(__dirname),
+                path.resolve(__dirname, "../../react-docs-ui/dist"),
+            ],
+        },
     },
     build: {
         chunkSizeWarningLimit: 2000,
+        assetsInlineLimit: 0,
+        modulePreload: false,
+        rollupOptions: {
+            output: {
+                manualChunks: createManualChunks,
+            },
+        },
     },
 });

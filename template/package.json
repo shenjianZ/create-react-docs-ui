@@ -4,10 +4,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "npm run build:search && tsc -b && vite build",
+        "dev": "npm run build:shiki && vite",
+        "build": "npm run build:search && npm run build:shiki && tsc -b && vite build",
         "preview": "vite preview",
-        "build:search": "node scripts/generate-search-index.js"
+        "build:search": "node scripts/generate-search-index.js",
+        "build:shiki": "node scripts/generate-shiki-bundle.js"
     },
     "dependencies": {
         "buffer": "^6.0.3",
@@ -17,7 +18,8 @@
         "react": "^19.0.0",
         "react-docs-ui": "^0.6.10",
         "react-dom": "^19.0.0",
-        "react-router-dom": "^7.8.0"
+        "react-router-dom": "^7.8.0",
+        "shiki": "^4.0.1"
     },
     "devDependencies": {
         "@types/debug": "^4.1.12",
