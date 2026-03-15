@@ -9,6 +9,56 @@ import { mdxComponentsPlugin } from "./vite-plugin-mdx-components";
 
 const FONT_BASE_URL = "https://file.shenjianl.cn/fonts/";
 
+function earlyDocsRuntimePreloadPlugin() {
+    return {
+        name: "early-docs-runtime-preload",
+        apply: "build",
+        async writeBundle(options, bundle) {
+            const preloadTargets = Object.values(bundle)
+                .filter((entry) => {
+                    if (entry.type !== "chunk") {
+                        return false;
+                    }
+
+                    return (
+                        /^assets\/MdxContent\.lazy-.*\.js$/.test(entry.fileName) ||
+                        /^assets\/mdx-components-.*\.js$/.test(entry.fileName)
+                    );
+                })
+                .map((entry) => entry.fileName)
+                .sort();
+
+            if (preloadTargets.length === 0) {
+                return;
+            }
+
+            const outputDir = options.dir ?? path.resolve(__dirname, "dist");
+            const indexHtmlPath = path.resolve(outputDir, "index.html");
+
+            let html;
+            try {
+                html = await fs.readFile(indexHtmlPath, "utf8");
+            } catch {
+                return;
+            }
+
+            const preloadTags = preloadTargets
+                .map(
+                    (fileName) =>
+                        `    <link rel="modulepreload" crossorigin href="/${fileName}">`,
+                )
+                .join("\n");
+
+            if (html.includes('rel="modulepreload" crossorigin href="/assets/MdxContent.lazy-')) {
+                return;
+            }
+
+            const nextHtml = html.replace("</head>", `${preloadTags}\n    </head>`);
+            await fs.writeFile(indexHtmlPath, nextHtml, "utf8");
+        },
+    };
+}
+
 function createManualChunks(id) {
     const normalizedId = id.replace(/\\/g, "/");
 
@@ -338,6 +388,7 @@ export default defineConfig({
             componentsPath: "./src/components",
             outputPath: "./src/generated/mdx-components.ts",
         }),
+        earlyDocsRuntimePreloadPlugin(),
         fontDownloadPlugin(),
         searchIndexPlugin(),
         publicHmrPlugin(),
