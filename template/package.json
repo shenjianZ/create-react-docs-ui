@@ -16,7 +16,7 @@
         "gray-matter": "^4.0.3",
         "js-yaml": "^4.1.0",
         "react": "^19.0.0",
-        "react-docs-ui": "^0.6.11",
+        "react-docs-ui": "^0.6.12",
         "react-dom": "^19.0.0",
         "react-router-dom": "^7.8.0",
         "shiki": "^4.0.1"
@@ -38,5 +38,6 @@
     },
     "engines": {
         "node": ">=18"
-    }
+    },
+    "packageManager": "pnpm@10.17.1+sha512.17c560fca4867ae9473a3899ad84a88334914f379be46d455cbf92e5cf4b39d34985d452d2583baf19967fa76cb5c17bc9e245529d0b98745721aa7200ecaf7a"
 }

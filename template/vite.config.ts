@@ -13,7 +13,16 @@ function createManualChunks(id) {
     const normalizedId = id.replace(/\\/g, "/");
 
     if (
+        normalizedId.includes("/react-docs-ui/dist/docs-app.es.js") ||
+        normalizedId.includes("/react-docs-ui/dist/DocsApp-")
+    ) {
+        return "docs-app";
+    }
+
+    if (
         normalizedId.includes("/react-docs-ui/dist/GlobalContextMenu-") ||
+        normalizedId.includes("/react-docs-ui/dist/SearchRuntime-") ||
+        normalizedId.includes("/react-docs-ui/dist/SearchDialog-") ||
         normalizedId.includes("/components/search/") ||
         normalizedId.includes("/lib/search") ||
         normalizedId.includes("/flexsearch/") ||
@@ -334,6 +343,7 @@ export default defineConfig({
         publicHmrPlugin(),
     ],
     resolve: {
+        dedupe: ["react", "react-dom", "react-router-dom"],
         alias: {
             "@": "src",
             buffer: "buffer",
