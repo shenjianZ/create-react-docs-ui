@@ -59,6 +59,8 @@ sidebar:
                         path: "/docs/guide/configuration"
                       - title: "PDF Server 部署"
                         path: "/docs/guide/pdf-server"
+                      - title: "AI Skills"
+                        path: "/docs/guide/ai-skills"
                 - title: "文档测试"
                   path: "/docs/test"
                   children:

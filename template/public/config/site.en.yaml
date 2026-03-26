@@ -59,6 +59,8 @@ sidebar:
                         path: "/docs/guide/configuration"
                       - title: "PDF Server Deployment"
                         path: "/docs/guide/pdf-server"
+                      - title: "AI Skills"
+                        path: "/docs/guide/ai-skills"
                 - title: "Documentation Tests"
                   path: "/docs/test"
                   children:
