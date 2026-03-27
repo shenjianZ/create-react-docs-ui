@@ -28,6 +28,7 @@ lastUpdated: 2026-03-27
 | `fonts` | 页面字体与构建期下载字体 |
 | `codeHighlight` | 代码高亮语言与主题 |
 | `search` | 全文搜索 |
+| `seo` | 页面 SEO 标签配置 |
 | `export` | Markdown / PDF / Word / 批量导出 |
 | `pageMeta` | 页面元信息展示配置 |
 | `editLink` | “编辑此页”链接配置 |
@@ -41,6 +42,7 @@ lastUpdated: 2026-03-27
 | :-- | :-- | :-- | :-- |
 | `title` | string | 网站标题 | `"React Docs UI 示例项目"` |
 | `description` | string | 网站描述，通常用于首页说明和 SEO | `"基于 React Docs UI 构建的文档网站示例"` |
+| `url` | string | 站点基准地址，用于生成 canonical、`hreflang`、`og:url` | `"https://your-docs-site.example.com"` |
 | `logo` | string 或 object | 网站 Logo，可用 emoji、图片路径、绝对 URL，或按明暗主题分别配置 | `"📚"` / `"/images/logo.png"` / `{ light: "...", dark: "..." }` |
 | `author` | string | 示例元信息字段，当前运行时未直接消费，可保留给站点维护者使用 | `"React Docs UI Team"` |
 
@@ -108,12 +110,21 @@ lastUpdated: 2026-03-27
 | `current` | string | 当前默认版本值 |
 | `items` | `VersionItem[]` | 可选版本列表 |
 
-启用后，版本化路由格式为 `/:lang/v/:version/`，例如：`/zh-cn/v/v1/docs/guide/introduction`。
+`VersionItem`
+
+| 字段 | 类型 | 说明 | 示例 |
+| :-- | :-- | :-- | :-- |
+| `value` | string | 版本值，用于路由段 | `"v1"` |
+| `label` | string | 版本显示文案 | `"v1"` |
+
+启用后，版本化路由格式为 `/:lang/v/:version/*`，例如：`/zh-cn/v/v1/docs/guide/introduction`。
 
 版本化文档目录建议使用：
 
 - `public/docs/zh-cn/v1/docs/...`
 - `public/docs/en/v1/docs/...`
+
+如果某个版本目录下缺少对应页面，当前运行时会回退到未版本化文档。
 
 ## 侧边栏 `sidebar`
 
@@ -330,6 +341,24 @@ lastUpdated: 2026-03-27
 | `maxResults` | number | 最多返回多少条结果 | `20` |
 | `snippetLength` | number | 示例/保留字段，当前运行时未直接使用 | `120` |
 
+## SEO `seo`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `enabled` | boolean | 是否启用页面 SEO 标签注入 |
+| `defaultTitle` | string | 默认页面标题 |
+| `titleTemplate` | string | 标题模板，支持 `{title}` 与 `{siteTitle}` |
+| `defaultDescription` | string | 默认描述 |
+| `defaultOgImage` | string | 默认社交分享图片 |
+| `robots` | string | 默认 robots 内容 |
+| `twitterCard` | string | Twitter 卡片类型 |
+
+说明：
+
+- `site.url` 是生成 `canonical`、`hreflang`、`og:url` 的前置项。
+- 页面 frontmatter 可覆盖 `title`、`description`、`canonical`，并支持 `noindex: true`。
+- 版本化文档会自动保留 `/v/:version` 前缀。
+
 ## 导出 `export`
 
 | 字段 | 类型 | 说明 |
@@ -361,6 +390,8 @@ lastUpdated: 2026-03-27
 | `showAuthors` | boolean | 是否显示作者 |
 | `preferGitMeta` | boolean | 是否优先使用构建时生成的 git 元数据 |
 
+页面级展示会优先读取 `public/doc-git-meta.json` 中的最后更新时间和作者；若缺失，则回退到 frontmatter 中的 `lastUpdated` / `authors` / `author`。创建时间请使用 `createdAt`。
+
 ## 编辑入口 `editLink`
 
 | 字段 | 类型 | 说明 |
@@ -368,6 +399,8 @@ lastUpdated: 2026-03-27
 | `enabled` | boolean | 是否启用编辑入口 |
 | `label` | string | 链接文案 |
 | `urlTemplate` | string | 编辑地址模板，支持 `{filePath}` 等占位符 |
+
+支持的模板变量：`{lang}`、`{slug}`、`{docPath}`、`{ext}`、`{filePath}`。
 
 ## 页面反馈 `feedback`
 

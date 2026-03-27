@@ -17,14 +17,15 @@
 ### 快速开始
 
 ```bash
-npm create react-docs-ui@latest my-docs
+pnpm create react-docs-ui my-docs
 cd my-docs
-npm install && npm run dev
+pnpm install
+pnpm dev
 ```
 
 ### 项目结构
 
-- `public/config/site.yaml` - 网站配置
+- `public/config/site.yaml` / `public/config/site.en.yaml` - 网站配置
 - `public/docs/<lang>/**/*.md` - 文档文件
 - `src/` - 应用入口
 

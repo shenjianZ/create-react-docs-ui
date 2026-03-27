@@ -28,6 +28,7 @@ The project is configuration-driven. Most site behavior is controlled by `public
 | `fonts` | Site fonts and build-time font downloads |
 | `codeHighlight` | Syntax highlighting languages and themes |
 | `search` | Full-text search |
+| `seo` | Page SEO tag configuration |
 | `export` | Markdown / PDF / Word / bulk export |
 | `pageMeta` | Page-level metadata display configuration |
 | `editLink` | Edit-this-page link configuration |
@@ -41,6 +42,7 @@ The project is configuration-driven. Most site behavior is controlled by `public
 | :-- | :-- | :-- | :-- |
 | `title` | string | Site title | `"React Docs UI Example"` |
 | `description` | string | Site description, usually used on the homepage and for SEO | `"Documentation site built with React Docs UI"` |
+| `url` | string | Base site URL used to build canonical, `hreflang`, and `og:url` | `"https://your-docs-site.example.com"` |
 | `logo` | string or object | Site logo. Can be an emoji, image path, absolute URL, or a light/dark object | `"📚"` / `"/images/logo.png"` / `{ light: "...", dark: "..." }` |
 | `author` | string | Sample metadata field. Not directly consumed by the current runtime | `"React Docs UI Team"` |
 
@@ -108,12 +110,21 @@ Common `type` / `icon` values:
 | `current` | string | Default current version value |
 | `items` | `VersionItem[]` | Available versions |
 
-When enabled, the versioned route format is `/:lang/v/:version/`, for example: `/en/v/v1/docs/guide/introduction`.
+`VersionItem`
+
+| Field | Type | Description | Example |
+| :-- | :-- | :-- | :-- |
+| `value` | string | Version value used in the route | `"v1"` |
+| `label` | string | Label shown in the UI | `"v1"` |
+
+When enabled, the versioned route format is `/:lang/v/:version/*`, for example: `/en/v/v1/docs/guide/introduction`.
 
 Recommended document directories:
 
 - `public/docs/zh-cn/v1/docs/...`
 - `public/docs/en/v1/docs/...`
+
+If a page is missing under a version directory, the current runtime falls back to the unversioned document.
 
 ## Sidebar `sidebar`
 
@@ -330,6 +341,24 @@ Notes:
 | `maxResults` | number | Maximum number of returned results | `20` |
 | `snippetLength` | number | Sample/reserved field. Not directly used by the current runtime | `120` |
 
+## SEO `seo`
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| `enabled` | boolean | Enable page-level SEO tag injection |
+| `defaultTitle` | string | Default page title |
+| `titleTemplate` | string | Title template with `{title}` and `{siteTitle}` |
+| `defaultDescription` | string | Default description |
+| `defaultOgImage` | string | Default social share image |
+| `robots` | string | Default robots content |
+| `twitterCard` | string | Twitter card type |
+
+Notes:
+
+- `site.url` is required for `canonical`, `hreflang`, and `og:url`.
+- Page frontmatter can override `title`, `description`, `canonical`, and supports `noindex: true`.
+- Versioned pages automatically keep the `/v/:version` prefix.
+
 ## Export `export`
 
 | Field | Type | Description |
@@ -361,6 +390,8 @@ Notes:
 | `showAuthors` | boolean | Show the author |
 | `preferGitMeta` | boolean | Prefer build-time git metadata over frontmatter |
 
+Page-level meta first reads `public/doc-git-meta.json`; if no git data is available, it falls back to frontmatter `lastUpdated` / `authors` / `author`. Use `createdAt` for created time.
+
 ## Edit Link `editLink`
 
 | Field | Type | Description |
@@ -368,6 +399,8 @@ Notes:
 | `enabled` | boolean | Enable the edit link |
 | `label` | string | Link label |
 | `urlTemplate` | string | Edit URL template with placeholders such as `{filePath}` |
+
+Supported variables: `{lang}`, `{slug}`, `{docPath}`, `{ext}`, `{filePath}`.
 
 ## Feedback `feedback`
 

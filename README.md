@@ -17,14 +17,15 @@ Scaffold a React documentation site in seconds, powered by [`react-docs-ui`](htt
 ### Quick Start
 
 ```bash
-npm create react-docs-ui@latest my-docs
+pnpm create react-docs-ui my-docs
 cd my-docs
-npm install && npm run dev
+pnpm install
+pnpm dev
 ```
 
 ### Project Structure
 
-- `public/config/site.yaml` - Site configuration
+- `public/config/site.yaml` / `public/config/site.en.yaml` - Site configuration
 - `public/docs/<lang>/**/*.md` - Documentation files
 - `src/` - App entry
 
