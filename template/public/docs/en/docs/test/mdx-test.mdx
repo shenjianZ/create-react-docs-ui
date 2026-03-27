@@ -1,3 +1,11 @@
+---
+title: MDX Component Usage Examples
+description: Demonstrates built-in components, custom components, Tabs, and Mermaid in the template project
+author: React Docs UI Team
+createdAt: 2026-03-25
+lastUpdated: 2026-03-27
+---
+
 # MDX Component Usage Examples
 
 This page demonstrates how to use custom React components in Markdown documents.
@@ -19,6 +27,26 @@ react-docs-ui provides some built-in MDX components that can be used directly.
 <Card title="This is a card">
     This is the content of a card component. Cards can be used to organize related content blocks.
 </Card>
+
+## Tabs Component
+
+<Tabs>
+    <Tab title="pnpm">
+        `pnpm dev`
+    </Tab>
+    <Tab title="npm">
+        `npm run dev`
+    </Tab>
+</Tabs>
+
+## Mermaid Diagram
+
+```mermaid
+graph TD
+  A[Markdown/MDX] --> B[react-docs-ui]
+  B --> C[Tabs]
+  B --> D[Mermaid]
+```
 
 ## Using Custom Components
 

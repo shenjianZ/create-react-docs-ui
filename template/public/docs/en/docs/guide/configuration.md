@@ -1,3 +1,11 @@
+---
+title: Configuration File (`site.yaml`) Explained
+description: Explains the main site.yaml and site.en.yaml fields used by the template project
+author: React Docs UI Team
+createdAt: 2026-03-25
+lastUpdated: 2026-03-27
+---
+
 # Configuration File (`site.yaml`) Explained
 
 The project is configuration-driven. Most site behavior is controlled by `public/config/site.yaml` for Chinese and `public/config/site.en.yaml` for English. This page documents the fields supported by the current runtime and also calls out a few legacy or sample-only fields where relevant.
@@ -8,6 +16,8 @@ The project is configuration-driven. Most site behavior is controlled by `public
 | :-- | :-- |
 | `site` | Basic site metadata such as title, description, and logo |
 | `navbar` | Top navigation bar |
+| `announcement` | Top announcement bar |
+| `versions` | Documentation version configuration |
 | `sidebar` | Sidebar navigation tree |
 | `theme` | Theme mode and theme-switch behavior |
 | `toc` | Right-side table of contents |
@@ -19,6 +29,9 @@ The project is configuration-driven. Most site behavior is controlled by `public
 | `codeHighlight` | Syntax highlighting languages and themes |
 | `search` | Full-text search |
 | `export` | Markdown / PDF / Word / bulk export |
+| `pageMeta` | Page-level metadata display configuration |
+| `editLink` | Edit-this-page link configuration |
+| `feedback` | Page feedback configuration |
 | `ai` | Global AI feature switch |
 | `pwa` | PWA-related settings |
 
@@ -77,6 +90,30 @@ Common `type` / `icon` values:
 - `link`
 - `external`
 - `globe`
+
+## Announcement `announcement`
+
+| Field | Type | Description | Example |
+| :-- | :-- | :-- | :-- |
+| `enabled` | boolean | Whether to show the announcement bar | `true` |
+| `text` | string | Announcement text | `"React Docs UI now supports Tabs"` |
+| `link` | string | Target URL when clicked | `"https://github.com/..."` |
+| `dismissible` | boolean | Whether users can dismiss the bar | `true` |
+
+## Versions `versions`
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| `enabled` | boolean | Whether version switching is enabled |
+| `current` | string | Default current version value |
+| `items` | `VersionItem[]` | Available versions |
+
+When enabled, the versioned route format is `/:lang/v/:version/`, for example: `/en/v/v1/docs/guide/introduction`.
+
+Recommended document directories:
+
+- `public/docs/zh-cn/v1/docs/...`
+- `public/docs/en/v1/docs/...`
 
 ## Sidebar `sidebar`
 
@@ -314,6 +351,33 @@ Notes:
 Notes:
 
 - If `pdfServer.enabled` is `false`, PDF export falls back to browser print/export.
+
+## Page Meta `pageMeta`
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| `showLastUpdated` | boolean | Show the page last-updated value |
+| `showEditLink` | boolean | Show the "Edit this page" link |
+| `showAuthors` | boolean | Show the author |
+| `preferGitMeta` | boolean | Prefer build-time git metadata over frontmatter |
+
+## Edit Link `editLink`
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| `enabled` | boolean | Enable the edit link |
+| `label` | string | Link label |
+| `urlTemplate` | string | Edit URL template with placeholders such as `{filePath}` |
+
+## Feedback `feedback`
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| `enabled` | boolean | Show the page feedback block |
+| `endpoint` | string | Feedback endpoint; when empty, submission stays local |
+| `method` | string | Request method, currently `POST` |
+| `includePageMeta` | boolean | Include page metadata in the payload |
+| `labels` | object | UI labels for the feedback block |
 
 ## AI `ai`
 

@@ -1,3 +1,11 @@
+---
+title: MDX 组件使用示例
+description: 演示模板项目中的内置组件、自定义组件、Tabs 与 Mermaid 的写法
+author: React Docs UI Team
+createdAt: 2026-03-25
+lastUpdated: 2026-03-27
+---
+
 # MDX 组件使用示例
 
 本页面演示了如何在 Markdown 文档中使用自定义 React 组件。
@@ -19,6 +27,26 @@ react-docs-ui 提供了一些内置的 MDX 组件，可以直接使用。
 <Card title="这是卡片">
     这是一个卡片组件的内容。卡片可以用来组织相关的内容块。
 </Card>
+
+## Tabs 组件
+
+<Tabs>
+    <Tab title="pnpm">
+        `pnpm dev`
+    </Tab>
+    <Tab title="npm">
+        `npm run dev`
+    </Tab>
+</Tabs>
+
+## Mermaid 图表
+
+```mermaid
+graph TD
+  A[Markdown/MDX] --> B[react-docs-ui]
+  B --> C[Tabs]
+  B --> D[Mermaid]
+```
 
 ## 使用自定义组件
 

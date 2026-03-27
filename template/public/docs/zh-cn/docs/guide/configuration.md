@@ -1,3 +1,11 @@
+---
+title: 配置文件（`site.yaml`）字段说明
+description: 说明模板项目中 site.yaml 与 site.en.yaml 的主要配置字段和示例
+author: React Docs UI Team
+createdAt: 2026-03-25
+lastUpdated: 2026-03-27
+---
+
 # 配置文件（`site.yaml`）字段说明
 
 项目遵循“配置驱动”。站点的大部分行为都由 `public/config/site.yaml`（中文）和 `public/config/site.en.yaml`（英文）控制。本文档按当前运行时实际支持的字段说明，并补充少量保留/兼容字段的用途。
@@ -8,6 +16,8 @@
 | :-- | :-- |
 | `site` | 网站基础信息，如标题、描述、Logo |
 | `navbar` | 顶部导航栏 |
+| `announcement` | 顶部公告栏 |
+| `versions` | 文档版本配置 |
 | `sidebar` | 侧边栏导航树 |
 | `theme` | 主题模式与切换行为 |
 | `toc` | 文章右侧目录 |
@@ -19,6 +29,9 @@
 | `codeHighlight` | 代码高亮语言与主题 |
 | `search` | 全文搜索 |
 | `export` | Markdown / PDF / Word / 批量导出 |
+| `pageMeta` | 页面元信息展示配置 |
+| `editLink` | “编辑此页”链接配置 |
+| `feedback` | 页面反馈配置 |
 | `ai` | AI 功能总开关 |
 | `pwa` | PWA 相关配置 |
 
@@ -77,6 +90,30 @@
 - `link`
 - `external`
 - `globe`
+
+## 公告栏 `announcement`
+
+| 字段 | 类型 | 说明 | 示例 |
+| :-- | :-- | :-- | :-- |
+| `enabled` | boolean | 是否显示公告栏 | `true` |
+| `text` | string | 公告文案 | `"React Docs UI 已支持 Tabs"` |
+| `link` | string | 点击后的目标地址 | `"https://github.com/..."` |
+| `dismissible` | boolean | 是否允许用户关闭公告 | `true` |
+
+## 版本配置 `versions`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `enabled` | boolean | 是否启用版本切换 |
+| `current` | string | 当前默认版本值 |
+| `items` | `VersionItem[]` | 可选版本列表 |
+
+启用后，版本化路由格式为 `/:lang/v/:version/`，例如：`/zh-cn/v/v1/docs/guide/introduction`。
+
+版本化文档目录建议使用：
+
+- `public/docs/zh-cn/v1/docs/...`
+- `public/docs/en/v1/docs/...`
 
 ## 侧边栏 `sidebar`
 
@@ -314,6 +351,33 @@
 说明：
 
 - 若 `pdfServer.enabled` 为 `false`，PDF 导出会退回到浏览器打印方案。
+
+## 页面元信息 `pageMeta`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `showLastUpdated` | boolean | 是否显示页面最后更新时间 |
+| `showEditLink` | boolean | 是否显示“编辑此页”入口 |
+| `showAuthors` | boolean | 是否显示作者 |
+| `preferGitMeta` | boolean | 是否优先使用构建时生成的 git 元数据 |
+
+## 编辑入口 `editLink`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `enabled` | boolean | 是否启用编辑入口 |
+| `label` | string | 链接文案 |
+| `urlTemplate` | string | 编辑地址模板，支持 `{filePath}` 等占位符 |
+
+## 页面反馈 `feedback`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `enabled` | boolean | 是否显示页面反馈组件 |
+| `endpoint` | string | 反馈提交地址；为空时仅本地完成 |
+| `method` | string | 请求方法，当前为 `POST` |
+| `includePageMeta` | boolean | 是否附带页面元信息 |
+| `labels` | object | 反馈组件文案 |
 
 ## AI 功能 `ai`
 

@@ -2,7 +2,8 @@
 title: "AI Agent Skills"
 description: "使用 AI Agent Skills 提升 React Docs UI 开发效率"
 author: "React Docs UI Team"
-date: "2026-03-25"
+createdAt: "2026-03-25"
+lastUpdated: "2026-03-27"
 ---
 
 # AI Agent Skills
@@ -38,7 +39,7 @@ AI Agent Skills 是专门为 React Docs UI 设计的 AI 辅助技能集合，可
 **用途**：编写 Markdown、Frontmatter 和 MDX 文档
 
 **功能**：
-- 使用 frontmatter 字段（title、description、author、date）
+- 使用 frontmatter 字段（title、description、author、createdAt、lastUpdated）
 - 使用自定义 MDX 组件
 - 维护中英文双语文档
 

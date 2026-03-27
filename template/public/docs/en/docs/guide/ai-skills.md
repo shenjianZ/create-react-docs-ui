@@ -2,7 +2,8 @@
 title: "AI Agent Skills"
 description: "Use AI Agent Skills to improve React Docs UI development efficiency"
 author: "React Docs UI Team"
-date: "2026-03-25"
+createdAt: "2026-03-25"
+lastUpdated: "2026-03-27"
 ---
 
 # AI Agent Skills
@@ -38,7 +39,7 @@ AI Agent Skills are specialized AI-assisted skill collections designed for React
 **Purpose**: Write Markdown, Frontmatter, and MDX documentation
 
 **Features**:
-- Use frontmatter fields (title, description, author, date)
+- Use frontmatter fields (title, description, author, createdAt, lastUpdated)
 - Use custom MDX components
 - Maintain bilingual documentation
 

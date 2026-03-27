@@ -4,8 +4,10 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "npm run build:shiki && vite",
-        "build": "npm run build:search && npm run build:shiki && tsc -b && vite build",
+        "predev": "node scripts/generate-doc-git-meta.js",
+        "dev": "pnpm build:shiki && vite",
+        "prebuild": "node scripts/generate-doc-git-meta.js",
+        "build": "pnpm build:search && pnpm build:shiki && tsc -b && vite build",
         "preview": "vite preview",
         "build:search": "node scripts/generate-search-index.js",
         "build:shiki": "node scripts/generate-shiki-bundle.js"

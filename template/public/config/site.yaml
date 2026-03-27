@@ -40,6 +40,21 @@ navbar:
           link: "https://example.com/api"
           enabled: false
 
+announcement:
+    enabled: true
+    text: "React Docs UI 已支持 Tabs、Mermaid 与 llms.txt"
+    link: "https://github.com/shenjianZ/react-docs-ui"
+    dismissible: true
+
+versions:
+    enabled: true
+    current: "v2"
+    items:
+        - value: "v2"
+          label: "v2 (当前)"
+        - value: "v1"
+          label: "v1"
+
 # 侧边栏导航配置
 sidebar:
     enabled: true
@@ -239,6 +254,29 @@ contextMenu:
 mdx:
     componentsPath: "/src/components" # 组件扫描路径
     enabled: true # 启用 MDX 支持
+
+pageMeta:
+    showLastUpdated: true
+    showEditLink: true
+    showAuthors: true
+    preferGitMeta: true
+
+editLink:
+    enabled: true
+    label: "编辑此页"
+    urlTemplate: "https://github.com/shenjianZ/react-docs-ui/edit/master/{filePath}"
+
+feedback:
+    enabled: true
+    endpoint: ""
+    method: "POST"
+    includePageMeta: true
+    labels:
+        helpful: "有帮助"
+        unhelpful: "没帮助"
+        inputPlaceholder: "可以补充哪里不清楚或不准确"
+        submit: "提交反馈"
+        thanks: "感谢反馈"
 
 ai:
     enabled: true
