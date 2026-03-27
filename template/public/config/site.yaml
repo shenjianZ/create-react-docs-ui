@@ -2,6 +2,7 @@
 site:
     title: "React Docs UI 示例项目"
     description: "基于 React Docs UI 构建的文档网站示例"
+    url: "https://your-docs-site.example.com"
     # logo支持以下格式：
     # 1. emoji: "🤖"
     # 2. 图片URL: "https://example.com/logo.png"
@@ -87,6 +88,8 @@ sidebar:
                         path: "/docs/test/mdx-test"
                       - title: "Frontmatter测试"
                         path: "/docs/test/frontmatter-test"
+                      - title: "SEO 覆盖测试"
+                        path: "/docs/test/seo-test"
 
 # Theme Configuration
 theme:
@@ -279,7 +282,7 @@ feedback:
         thanks: "感谢反馈"
 
 ai:
-    enabled: true
+    enabled: false
 
 # 字体配置
 fonts:
@@ -326,6 +329,15 @@ search:
     placeholder: "搜索文档..."
     maxResults: 20
     snippetLength: 120
+
+seo:
+    enabled: true
+    defaultTitle: "React Docs UI 示例项目"
+    titleTemplate: "{title} | {siteTitle}"
+    defaultDescription: "基于 React Docs UI 构建的文档网站示例"
+    defaultOgImage: "https://your-docs-site.example.com/images/og-default.png"
+    robots: "index, follow"
+    twitterCard: "summary_large_image"
 
 export:
     enabled: true
