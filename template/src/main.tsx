@@ -11,7 +11,7 @@ import { DocsApp, preloadDocsRuntime } from "react-docs-ui/docs-app";
 // DocsApp,
 // preloadDocsRuntime,
 // } from "../../../react-docs-ui/dist/docs-app.es.js";
-// import { siteShikiBundle } from "./generated/shiki-bundle";
+import { siteShikiBundle } from "./generated/shiki-bundle";
 
 preloadDocsRuntime();
 
