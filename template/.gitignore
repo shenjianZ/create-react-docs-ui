@@ -22,6 +22,7 @@ src/generated/
 
 # Generated runtime artifacts
 public/search-index-*.json
+public/changelog-index-*.json
 public/doc-git-meta.json
 public/llms.txt
 public/llms-full.

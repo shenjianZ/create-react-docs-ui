@@ -54,7 +54,7 @@ async function main() {
     const payload = { generatedAt: new Date().toISOString(), files: docMeta };
     await fs.mkdir(publicDir, { recursive: true });
     await fs.writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-    console.log(`[doc-git-meta] Wrote ${Object.keys(docMeta).length} entries to public/doc-git-meta.json`);
+    console.log(`[doc-git-meta] Generated public/doc-git-meta.json (${Object.keys(docMeta).length} entries)`);
 }
 
 main().catch((error) => {

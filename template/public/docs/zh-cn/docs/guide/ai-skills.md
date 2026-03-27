@@ -36,17 +36,19 @@ AI Agent Skills 是专门为 React Docs UI 设计的 AI 辅助技能集合，可
 
 ### 2. React Docs UI Doc Authoring
 
-**用途**：编写 Markdown、Frontmatter 和 MDX 文档
+**用途**：编写 Markdown、Frontmatter、MDX 文档，以及 changelog / release notes
 
 **功能**：
 - 使用 frontmatter 字段（title、description、author、createdAt、lastUpdated）
 - 使用自定义 MDX 组件
 - 维护中英文双语文档
+- 编写 `public/docs/<lang>/changelog/*.md` 发布记录
 
 **使用场景**：
 - 创建新的文档页面
 - 编写技术文档
 - 管理双语文档
+- 新增或维护 changelog 条目
 
 ### 3. React Docs UI Scaffold
 
@@ -116,6 +118,16 @@ AI: [使用 React Docs UI Doc Authoring 技能]
 ```
 
 **结果**：AI 会创建完整的 Markdown 文档，包含适当的 frontmatter 和内容结构。
+
+### 更新日志编写
+
+**对话示例**：
+```
+你: 帮我新增 v0.2.0 的 changelog，中英文各一份，并补齐 summary、type、breaking
+AI: [使用 React Docs UI Doc Authoring 技能]
+```
+
+**结果**：AI 会按 `public/docs/<lang>/changelog/<slug>.md` 约定生成发布说明，并提醒你重新生成 changelog 索引。
 
 ### 项目创建
 

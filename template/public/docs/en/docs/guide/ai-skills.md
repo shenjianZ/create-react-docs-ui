@@ -36,17 +36,19 @@ AI Agent Skills are specialized AI-assisted skill collections designed for React
 
 ### 2. React Docs UI Doc Authoring
 
-**Purpose**: Write Markdown, Frontmatter, and MDX documentation
+**Purpose**: Write Markdown, Frontmatter, MDX documentation, and changelog / release notes
 
 **Features**:
 - Use frontmatter fields (title, description, author, createdAt, lastUpdated)
 - Use custom MDX components
 - Maintain bilingual documentation
+- Author release entries in `public/docs/<lang>/changelog/*.md`
 
 **Use Cases**:
 - Create new documentation pages
 - Author technical documentation
 - Manage bilingual documentation
+- Add or maintain changelog entries
 
 ### 3. React Docs UI Scaffold
 
@@ -116,6 +118,16 @@ AI: [Uses React Docs UI Doc Authoring skill]
 ```
 
 **Result**: AI will create a complete Markdown document with appropriate frontmatter and content structure.
+
+### Changelog Authoring
+
+**Example Dialogue**:
+```
+You: Help me add a v0.2.0 changelog entry in both Chinese and English, including summary, type, and breaking
+AI: [Uses React Docs UI Doc Authoring skill]
+```
+
+**Result**: AI will generate release notes following the `public/docs/<lang>/changelog/<slug>.md` convention and remind you to regenerate the changelog index.
 
 ### Project Creation
 

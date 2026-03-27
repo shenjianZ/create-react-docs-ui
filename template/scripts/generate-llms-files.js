@@ -41,7 +41,7 @@ async function main() {
 
     await fs.writeFile(path.join(publicDir, "llms.txt"), `${llms}\n`, "utf8");
     await fs.writeFile(path.join(publicDir, "llms-full.txt"), `${llmsFull}\n`, "utf8");
-    console.log(`[llms] Wrote ${docs.length} docs to llms.txt and llms-full.txt`);
+    console.log(`[llms] Generated public/llms.txt, public/llms-full.txt (${docs.length} docs)`);
 }
 
 main().catch(error => {
