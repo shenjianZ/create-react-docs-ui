@@ -26,6 +26,7 @@
         "template/scripts/**/*",
         "template/tsconfig.app.json",
         "template/tsconfig.json",
+        "template/.gitignore",
         "README.md",
         "README-zh.md"
     ],

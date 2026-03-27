@@ -4,11 +4,12 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "predev": "node scripts/generate-doc-git-meta.js",
+        "predev": "node scripts/generate-doc-git-meta.js && node scripts/generate-llms-files.js",
         "dev": "pnpm build:shiki && vite",
-        "prebuild": "node scripts/generate-doc-git-meta.js",
+        "prebuild": "node scripts/generate-doc-git-meta.js && node scripts/generate-llms-files.js",
         "build": "pnpm build:search && pnpm build:shiki && tsc -b && vite build",
         "preview": "vite preview",
+        "build:llms": "node scripts/generate-llms-files.js",
         "build:search": "node scripts/generate-search-index.js",
         "build:shiki": "node scripts/generate-shiki-bundle.js"
     },

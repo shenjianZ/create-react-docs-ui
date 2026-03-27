@@ -4,4 +4,5 @@
 /template/pnpm-lock.yaml
 /template/tsconfig.app.tsbuildinfo
 /template/public/search-index-*.json
+/template/public/llm*.txt
 /template/src/generated/
