@@ -20,6 +20,23 @@ The template project includes built-in Changelog / Release Notes support.
 - List page: `/:lang/changelog`
 - Detail page: `/:lang/changelog/:slug`
 
+## List pagination
+
+You can use `changelog.pageSize` in the site config to control how many items appear per page:
+
+```yaml
+changelog:
+  enabled: true
+  title: "Changelog"
+  pageSize: 10
+```
+
+When configured, the list page enables URL-based pagination. Example for page 2:
+
+```text
+/en/changelog?page=2
+```
+
 ## Frontmatter example
 
 ```yaml
@@ -66,6 +83,8 @@ pnpm prepare:docs
 ```
 
 `predev` and `prebuild` already call this for you, but run it manually if you want to refresh the JSON index immediately.
+
+Pagination is handled by the frontend list page through `changelog.pageSize` and does not change the changelog file structure or index generation flow.
 
 ## Complete example
 

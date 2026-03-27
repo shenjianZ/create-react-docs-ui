@@ -20,6 +20,23 @@ createdAt: 2026-03-27
 - 列表页：`/:lang/changelog`
 - 详情页：`/:lang/changelog/:slug`
 
+## 列表分页
+
+你可以在站点配置里使用 `changelog.pageSize` 控制每页显示多少条：
+
+```yaml
+changelog:
+  enabled: true
+  title: "更新日志"
+  pageSize: 10
+```
+
+配置后，列表页会启用 URL 分页。例如第 2 页：
+
+```text
+/zh-cn/changelog?page=2
+```
+
 ## frontmatter 示例
 
 ```yaml
@@ -66,6 +83,8 @@ pnpm prepare:docs
 ```
 
 `predev` 和 `prebuild` 已经会自动执行这一步；如果你想立刻刷新列表页使用的 JSON 索引，可以手动跑一次。
+
+分页由前端列表页根据 `changelog.pageSize` 控制，不影响 changelog 文件内容结构或索引生成逻辑。
 
 ## 完整示例
 

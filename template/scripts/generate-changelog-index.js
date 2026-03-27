@@ -18,6 +18,17 @@ function parseFrontmatter(source) {
   return { data, content: source.slice(endIndex + 5).trim() }
 }
 
+function compareVersionsDesc(leftVersion, rightVersion) {
+  const leftParts = String(leftVersion || "").replace(/^[^\d]*/, "").split(/[^0-9]+/).filter(Boolean).map(Number)
+  const rightParts = String(rightVersion || "").replace(/^[^\d]*/, "").split(/[^0-9]+/).filter(Boolean).map(Number)
+  const length = Math.max(leftParts.length, rightParts.length)
+  for (let index = 0; index < length; index += 1) {
+    const diff = (rightParts[index] || 0) - (leftParts[index] || 0)
+    if (diff !== 0) return diff
+  }
+  return 0
+}
+
 async function buildIndex(lang) {
   const changelogDir = path.join(publicDir, "docs", lang, "changelog")
   const files = (await fs.readdir(changelogDir, { withFileTypes: true }))
@@ -38,7 +49,12 @@ async function buildIndex(lang) {
       path: `/${lang}/changelog/${slug}`,
     }
   }))
-  return items.filter(item => !item.draft).sort((a, b) => Date.parse(b.date || "") - Date.parse(a.date || ""))
+  return items.filter(item => !item.draft).sort((a, b) => {
+    const dateDiff = Date.parse(b.date || "") - Date.parse(a.date || "")
+    if (dateDiff !== 0) return dateDiff
+    const versionDiff = compareVersionsDesc(a.version, b.version)
+    return versionDiff !== 0 ? versionDiff : a.slug.localeCompare(b.slug)
+  })
 }
 
 for (const lang of ["zh-cn", "en"]) {
