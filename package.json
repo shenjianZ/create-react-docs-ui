@@ -1,10 +1,14 @@
 {
     "name": "create-react-docs-ui",
-    "version": "0.7.2",
+    "version": "0.7.3",
     "private": false,
     "type": "module",
     "bin": {
         "create-react-docs-ui": "./index.js"
+    },
+    "scripts": {
+        "prepack": "node scripts/switch-template-main.js publish",
+        "postpack": "node scripts/switch-template-main.js restore"
     },
     "files": [
         "index.js",
@@ -23,6 +27,7 @@
         "template/src/shiki-modules.d.ts",
         "template/src/vite-env.d.ts",
         "template/src/components/**/*",
+        "template/src/utils/docs-bootstrap.package.ts",
         "template/scripts/**/*",
         "template/tsconfig.app.json",
         "template/tsconfig.json",
