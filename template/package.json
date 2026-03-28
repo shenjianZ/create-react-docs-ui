@@ -20,7 +20,7 @@
         "gray-matter": "^4.0.3",
         "js-yaml": "^4.1.0",
         "react": "^19.0.0",
-        "react-docs-ui": "^0.7.3",
+        "react-docs-ui": "^0.7.4",
         "react-dom": "^19.0.0",
         "react-router-dom": "^7.13.2",
         "shiki": "^4.0.2"
