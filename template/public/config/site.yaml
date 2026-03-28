@@ -276,7 +276,7 @@ pageMeta:
 editLink:
     enabled: true
     label: "编辑此页"
-    urlTemplate: "https://github.com/shenjianZ/react-docs-ui/edit/master/{filePath}"
+    urlTemplate: "https://github.com/shenjianZ/create-react-docs-ui/edit/master/template/{filePath}"
 
 feedback:
     enabled: true
