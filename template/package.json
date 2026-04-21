@@ -4,40 +4,29 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "prepare:docs": "node scripts/generate-doc-git-meta.js && node scripts/generate-llms-files.js && node scripts/generate-changelog-index.js",
+        "prepare:docs": "react-docs-ui generate-doc-git-meta && react-docs-ui generate-llms-files && react-docs-ui generate-changelog-index",
         "predev": "pnpm prepare:docs",
         "dev": "pnpm build:shiki && vite",
         "prebuild": "pnpm prepare:docs",
         "build": "pnpm build:search && pnpm build:shiki && tsc -b && vite build",
         "preview": "vite preview",
-        "build:llms": "node scripts/generate-llms-files.js",
-        "build:search": "node scripts/generate-search-index.js",
-        "build:shiki": "node scripts/generate-shiki-bundle.js"
+        "build:llms": "react-docs-ui generate-llms-files",
+        "build:search": "react-docs-ui generate-search-index",
+        "build:shiki": "react-docs-ui generate-shiki-bundle"
     },
     "dependencies": {
         "buffer": "^6.0.3",
-        "flexsearch": "^0.8.212",
-        "gray-matter": "^4.0.3",
-        "js-yaml": "^4.1.0",
         "react": "^19.0.0",
-        "react-docs-ui": "^0.7.5",
+        "react-docs-ui": "^0.7.6",
         "react-dom": "^19.0.0",
         "react-router-dom": "^7.13.2",
         "shiki": "^4.0.2"
     },
     "devDependencies": {
-        "@types/debug": "^4.1.13",
-        "@types/hast": "^3.0.4",
-        "@types/ms": "^2.1.0",
         "@types/react": "^19.1.9",
         "@types/react-dom": "^19.1.7",
-        "@types/unist": "^3.0.3",
         "@vitejs/plugin-react": "^6.0.1",
-        "remark-gfm": "^4.0.1",
-        "remark-parse": "^11.0.0",
         "typescript": "^6.0.2",
-        "unified": "^11.0.5",
-        "unist-util-visit": "^5.0.0",
         "vite": "^8.0.2"
     },
     "engines": {

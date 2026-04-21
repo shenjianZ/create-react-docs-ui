@@ -1,6 +1,6 @@
 {
     "name": "create-react-docs-ui",
-    "version": "0.7.5",
+    "version": "0.7.6",
     "private": false,
     "type": "module",
     "bin": {
@@ -23,12 +23,10 @@
         "template/public/fonts/FragmentMono-Regular.woff2",
         "template/src/main.tsx",
         "template/src/index.css",
-        "template/src/react-docs-ui.d.ts",
         "template/src/shiki-modules.d.ts",
         "template/src/vite-env.d.ts",
         "template/src/components/**/*",
         "template/src/utils/docs-bootstrap.package.ts",
-        "template/scripts/**/*",
         "template/tsconfig.app.json",
         "template/tsconfig.json",
         "template/.gitignore",

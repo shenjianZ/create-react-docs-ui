@@ -4,7 +4,6 @@ import fs from "node:fs/promises";
 import { spawn } from "child_process";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import yaml from "js-yaml";
 import { mdxComponentsPlugin } from "./vite-plugin-mdx-components";
 
 const FONT_BASE_URL = "https://file.shenjianl.cn/fonts/";
@@ -137,6 +136,24 @@ function fontDownloadPlugin() {
         return `${value.toFixed(value >= 100 || unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`;
     };
 
+    const extractDownloadFonts = (content) => {
+        const lines = content.split(/\r?\n/);
+        const fonts = [];
+        let inDownloadFonts = false;
+        for (const line of lines) {
+            if (/^\s*downloadFonts:\s*$/.test(line)) {
+                inDownloadFonts = true;
+                continue;
+            }
+            if (inDownloadFonts && /^\s*-\s+/.test(line)) {
+                fonts.push(line.replace(/^\s*-\s+/, "").trim().replace(/^["']|["']$/g, ""));
+                continue;
+            }
+            if (inDownloadFonts && /^\S/.test(line)) break;
+        }
+        return fonts;
+    };
+
     const downloadFont = async (task) => {
         const response = await fetch(task.source);
         if (!response.ok) {
@@ -204,8 +221,7 @@ function fontDownloadPlugin() {
             const filePath = path.resolve(configDir, fileName);
             try {
                 const content = await fs.readFile(filePath, "utf8");
-                const parsed = yaml.load(content) || {};
-                const entries = parsed?.fonts?.downloadFonts || [];
+                const entries = extractDownloadFonts(content);
 
                 for (const entry of entries) {
                     const normalized = String(entry || "").trim();
@@ -298,11 +314,12 @@ function searchIndexPlugin() {
                 generating = true;
 
                 const child = spawn(
-                    "node",
-                    ["scripts/generate-search-index.js"],
+                    "react-docs-ui",
+                    ["generate-search-index"],
                     {
                         cwd: path.resolve(__dirname),
                         stdio: "inherit",
+                        shell: process.platform === "win32",
                     },
                 );
 
