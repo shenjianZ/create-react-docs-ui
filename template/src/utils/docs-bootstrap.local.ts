@@ -20,12 +20,15 @@ export function bootstrapDocsApp(components: Record<string, unknown>) {
 export function startDocsApp() {
     window.Buffer = Buffer;
     bootstrapDocsApp(MDX_COMPONENTS);
+    const DocsAppWithShiki = DocsApp as React.ComponentType<{
+        shikiBundle?: typeof siteShikiBundle;
+    }>;
 
     ReactDOM.createRoot(document.getElementById("root")!).render(
         React.createElement(
             React.StrictMode,
             null,
-            React.createElement(DocsApp, { shikiBundle: siteShikiBundle }),
+            React.createElement(DocsAppWithShiki, { shikiBundle: siteShikiBundle }),
         ),
     );
 }

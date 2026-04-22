@@ -361,7 +361,7 @@ reading:
     # Show estimated reading time (default: true)
     showTime: true
     # Show reading progress bar (default: false)
-    showProgress: false
+    showProgress: true
 
 # Sitemap Configuration
 sitemap:
