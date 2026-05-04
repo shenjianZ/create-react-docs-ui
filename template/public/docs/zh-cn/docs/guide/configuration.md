@@ -38,6 +38,7 @@ lastUpdated: 2026-03-27
 | `pageMeta` | 页面元信息展示配置 |
 | `editLink` | “编辑此页”链接配置 |
 | `feedback` | 页面反馈配置 |
+| `backend` | 业务后端地址与功能开关 |
 | `ai` | AI 功能总开关 |
 | `pwa` | PWA 相关配置 |
 
@@ -359,12 +360,11 @@ HTML `img` 常用属性：
 | :-- | :-- | :-- | :-- |
 | `fontFamilyZhCn` | string | 中文字体栈 | `"MiSans, PingFang SC, sans-serif"` |
 | `fontFamilyEn` | string | 英文或等宽字体栈 | `"Fragment Mono, system-ui, sans-serif"` |
-| `downloadFonts` | string[] | 构建或开发时自动准备到 `public/fonts` 的字体文件名 | `["FragmentMono-Regular.woff2"]` |
 
 说明：
 
 - 页面会先用系统字体渲染，再异步切换到你配置的站点字体。
-- `downloadFonts` 属于构建辅助配置，不是运行时网络请求白名单。
+- 运行时会根据 `fontFamilyZhCn` 和 `fontFamilyEn` 的首选字体名声明本地 `@font-face`，例如 `Noto Sans SC` 会匹配 `/fonts/NotoSansSC-400.woff2`、`/fonts/NotoSansSC-Regular.woff2` 等常见文件名。
 
 ## 代码高亮 `codeHighlight`
 
@@ -428,6 +428,33 @@ HTML `img` 常用属性：
 说明：
 
 - 若 `pdfServer.enabled` 为 `false`，PDF 导出会退回到浏览器打印方案。
+- `export.pdfServer.url` 是 PDF 专用服务地址，不会继承 `backend.baseUrl`。
+
+## 后端 `backend`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `enabled` | boolean | 是否启用后端驱动能力 |
+| `baseUrl` | string | 业务 API 基础路径，模板默认是 `"/api"` |
+| `features` | object | 分能力开关 |
+
+`backend.features`
+
+| 字段 | 类型 | 说明 |
+| :-- | :-- | :-- |
+| `auth` | boolean | 控制登录入口、用户菜单和资料编辑 |
+| `comments` | boolean | 控制评论区 |
+| `bookmarks` | boolean | 控制书签按钮 |
+| `analytics` | boolean | 控制页面访问与停留时长上报 |
+| `feedback` | boolean | 控制页面反馈组件 |
+| `notifications` | boolean | 预留开关，当前模板仅做配置透传 |
+| `admin` | boolean | 预留开关，当前模板未内置后台 UI |
+
+说明：
+
+- `backend.enabled = false` 会整体关闭这组能力。
+- 模板开发环境默认通过 `vite.config.ts` 把 `/api` 代理到 `http://localhost:3000`。
+- 推荐把 `web-rust-template-project` 作为参考后端实现。
 
 ## 页面元信息 `pageMeta`
 
@@ -455,10 +482,15 @@ HTML `img` 常用属性：
 | 字段 | 类型 | 说明 |
 | :-- | :-- | :-- |
 | `enabled` | boolean | 是否显示页面反馈组件 |
-| `endpoint` | string | 反馈提交地址；为空时仅本地完成 |
+| `endpoint` | string | 反馈提交地址；前端也会检查 `/feedback/status` 是否可用 |
 | `method` | string | 请求方法，当前为 `POST` |
 | `includePageMeta` | boolean | 是否附带页面元信息 |
 | `labels` | object | 反馈组件文案 |
+
+说明：
+
+- 反馈组件需要同时满足 `feedback.enabled !== false`、`backend.enabled !== false`、`backend.features.feedback !== false`。
+- 如果状态检查接口不可用，前端会隐藏反馈区而不是展示一个不可提交的表单。
 
 ## AI 功能 `ai`
 

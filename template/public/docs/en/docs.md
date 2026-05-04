@@ -18,6 +18,13 @@ Welcome to the React Docs UI documentation system.
 - [Configuration](/docs/guide/configuration) - Deep dive into configuration options
 - [PDF Server Deployment](/docs/guide/pdf-server) - Deploy PDF generation service
 
+## Backend Integration
+
+- [Overview](/docs/backend/overview) - See which backend capabilities and config switches the frontend expects
+- [Deploy Rust Backend](/docs/backend/deploy-rust-backend) - Start the official reference backend
+- [Email SMTP](/docs/backend/email-smtp) - Configure verification email delivery
+- [Google / GitHub OAuth](/docs/backend/oauth-google-github) - Prepare third-party login credentials and callback URLs
+
 ## Documentation Tests
 
 - [MD Test](/docs/test/test) - Test Markdown rendering functionality

@@ -12,6 +12,7 @@ Scaffold a React documentation site in seconds, powered by [`react-docs-ui`](htt
 - Command menu (Cmd+K)
 - Context menu
 - Internationalization
+- Backend integration: auth, comments, bookmarks, analytics, feedback
 - Vite setup
 
 ### Quick Start

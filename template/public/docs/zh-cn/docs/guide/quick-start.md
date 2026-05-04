@@ -16,14 +16,14 @@ lastUpdated: 2026-03-27
 
 ```bash
 # 这会创建一个名为 "my-awesome-docs" 的项目
-npx create-react-docs-ui@latest my-awesome-docs
+pnpm create react-docs-ui my-awesome-docs
 ```
 
 然后，进入项目目录并安装依赖：
 
 ```bash
 cd my-awesome-docs
-npm install
+pnpm install
 ```
 
 ## 2. 组织你的文档
@@ -93,12 +93,32 @@ sidebar:
 ```
 
 这里侧边栏的about项还需要再创建一个文件`public/docs/zh-cn/about` 下`创建about.md`
-## 4. 启动网站
+## 4. 联调后端能力
+
+如果你准备启用登录、评论、书签、统计或反馈，请同时启动后端服务。
+
+```bash
+cd ../web-rust-template-project
+cargo run
+```
+
+模板默认会把 `/api` 代理到 `http://localhost:3000`，因此前端开发环境通常不需要额外改请求地址。
+
+如果你暂时还没有后端，也可以先在 `public/config/site.yaml` 中关闭：
+
+```yaml
+backend:
+  enabled: false
+```
+
+更细粒度的控制方式可见 [后端集成](/docs/backend/overview) 和 [配置说明](/docs/guide/configuration)。
+
+## 5. 启动网站
 
 保存你的所有修改，然后在终端运行：
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 你的网站现在应该运行在 `http://localhost:5173` 上了。访问它，你会看到更新后的标题、Logo，以及导航栏和侧边栏中新增的“关于”链接。恭喜你，你已经成功掌握了 React Docs UI 的基本工作流程！
