@@ -72,12 +72,6 @@ function getPackageManager() {
   return 'npm'
 }
 
-function getPackageManagerField(pm) {
-  const userAgent = process.env.npm_config_user_agent || ''
-  const token = userAgent.split(' ')[0]
-  return token?.startsWith(`${pm}/`) ? token : undefined
-}
-
 function findLocalReactLib() {
   // Try to locate the built library in the monorepo for convenience
   const repoRoot = path.resolve(__dirname, '..')
@@ -137,12 +131,7 @@ async function init() {
   pkg.name = packageName
   const pm = getPackageManager()
   const runCmd = pm === 'npm' ? 'npm run' : pm
-  const packageManagerField = getPackageManagerField(pm)
-  if (packageManagerField) {
-    pkg.packageManager = packageManagerField
-  } else {
-    delete pkg.packageManager
-  }
+  delete pkg.packageManager
 
   // If local lib exists, link it via file: for quick testing
   const localLib = findLocalReactLib()
