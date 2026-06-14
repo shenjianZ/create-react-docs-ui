@@ -1,10 +1,10 @@
 {
     "name": "create-react-docs-ui",
-    "version": "0.9.2",
+    "version": "0.9.3",
     "private": false,
     "type": "module",
     "bin": {
-        "create-react-docs-ui": "./index.js"
+        "create-react-docs-ui": "index.js"
     },
     "scripts": {
         "prepack": "node scripts/switch-template-main.js publish",
