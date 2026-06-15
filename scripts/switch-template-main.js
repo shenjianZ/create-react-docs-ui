@@ -11,12 +11,15 @@ const commentedPackageImport = `// ${packageImport}`;
 
 function switchToPublishSource(source) {
   return source
+    .replace(`// ${commentedPackageImport}\n`, `${commentedPackageImport}\n`)
     .replace(`${commentedPackageImport}\n`, `${packageImport}\n`)
     .replace(`${localImport}\n`, "");
 }
 
 function switchToLocalSource(source) {
-  let next = source.replace(`${packageImport}\n`, `${commentedPackageImport}\n`);
+  let next = source
+    .replace(`// ${commentedPackageImport}\n`, `${commentedPackageImport}\n`)
+    .replace(`${packageImport}\n`, `${commentedPackageImport}\n`);
   if (!next.includes(localImport)) {
     next = next.replace(`${commentedPackageImport}\n`, `${commentedPackageImport}\n${localImport}\n`);
   }

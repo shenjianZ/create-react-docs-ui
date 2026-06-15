@@ -21,3 +21,7 @@ template/public/fonts/*
 !template/public/fonts/MiSans-Bold.woff2
 !template/public/fonts/MiSans-Medium.woff2
 !template/public/fonts/MiSans-Regular.woff2
+!template/public/fonts/NotoSansSC-400.woff2
+!template/public/fonts/NotoSansSC-500.woff2
+!template/public/fonts/NotoSansSC-600.woff2
+!template/public/fonts/NotoSansSC-700.woff2
